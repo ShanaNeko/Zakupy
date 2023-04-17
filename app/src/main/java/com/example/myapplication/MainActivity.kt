@@ -56,7 +56,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-            checkbox.chipBackgroundColor = resources.getColorStateList(R.color.purple_200)
+            when (checkbox.tag) {
+                "Ciastka" -> { checkbox.chipBackgroundColor = resources.getColorStateList(R.color.ciastka) }
+                "Kwiaty" -> { checkbox.chipBackgroundColor = resources.getColorStateList(R.color.kwiaty) }
+                "Herbaty" -> { checkbox.chipBackgroundColor = resources.getColorStateList(R.color.herbata) }
+            }
 
             when (checkbox.tag) {
                 "Ciastka" -> listaciastek.addView(checkbox)
@@ -93,12 +97,13 @@ class MainActivity : AppCompatActivity() {
                     chip.isCloseIconVisible = true
                     chip.tag = groupName
 
-                    val kolorki = resources.getColorStateList(R.color.purple_200)
-
                     when (groupName) {
-                        "Ciastka", "Kwiaty", "Herbaty" -> {
-                            chip.chipBackgroundColor = kolorki
-                        }
+                        "Ciastka" -> {
+                            chip.chipBackgroundColor = resources.getColorStateList(R.color.ciastka) }
+                        "Kwiaty" -> {
+                            chip.chipBackgroundColor = resources.getColorStateList(R.color.kwiaty) }
+                        "Herbaty" -> {
+                            chip.chipBackgroundColor = resources.getColorStateList(R.color.herbata) }
                     }
 
                     chipsGroup.addView(chip)
