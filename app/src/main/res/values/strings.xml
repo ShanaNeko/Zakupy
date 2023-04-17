@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="produkty">Produkty</string>
+    <string name="koszyk">Koszyk</string>
+    <string name="ciastka">Ciastka</string>
+    <string name="kwiaty">Kwiaty</string>
+    <string name="herbaty">Herbaty</string>
+    <string name="wybrane_artyku_y">Wybrane artykuły</string>
+</resources>

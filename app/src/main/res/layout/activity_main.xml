@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/dodawanie"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/produkty" />
+
+        <RadioButton
+            android:id="@+id/usuwanie"
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:text="@string/koszyk" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/checkboxesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ciastka"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/listaciastek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kwiaty"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/listakwiatow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/herbaty"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/listaherbat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="false" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chipsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wybrane_artyku_y"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipsGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="false" />
+
+    </LinearLayout>
+
+</LinearLayout>
