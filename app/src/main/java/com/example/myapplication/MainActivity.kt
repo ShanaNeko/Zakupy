@@ -18,11 +18,14 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private val zakupy = mapOf(
-        "Ciastka" to listOf("Owsiane"),
+        "Ciastka" to listOf("Owsiane", "Czekoladowe", "Maślane", "Z bakaliami", "Z orzechami",
+            "Kokosowe", "Imbirowe", "Z marmoladą", "Francuskie", "Z ciasta kruchego"),
 
-        "Kwiaty" to listOf("Róże"),
+        "Kwiaty" to listOf("Róże", "Tulipany", "Stokrotki", "Fiołki", "Dale", "Żonkile",
+            "Chryzantemy", "Gerbery", "Orchidee", "Goździki"),
 
-        "Herbaty" to listOf("Earl Grey")
+        "Herbaty" to listOf("Earl Grey", "Zielona", "Czarna", "Darjeeling", "Pu-erh", "Bancha",
+            "Yerba mate", "Sencha", "Rooibos", "Hibiskus")
     )
     private val selectedItems = mutableListOf<String>()
 
