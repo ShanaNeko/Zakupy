@@ -3,6 +3,8 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.annotation.SuppressLint
+import android.view.View
+import android.widget.RadioGroup
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import java.util.*
@@ -15,7 +17,7 @@ import java.util.*
 //6.Ocenie podlega również ilość commit'ów.
 
 class MainActivity : AppCompatActivity() {
-    private val shoppingItems = mapOf(
+    private val zakupy = mapOf(
         "Ciastka" to listOf("Owsiane"),
 
         "Kwiaty" to listOf("Róże"),
@@ -29,16 +31,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        this.findViewById<RadioGroup>(R.id.RadioGroup).setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.dodawanie -> showAddMode()
+                R.id.usuwanie -> showCheckOffMode()
+            }
+        }
+
         val listaciastek = findViewById<ChipGroup>(R.id.listaciastek)
         val listakwiatow = findViewById<ChipGroup>(R.id.listakwiatow)
         val listaherbat = findViewById<ChipGroup>(R.id.listaherbat)
-        val listazakupow = shoppingItems.values.flatten()
+        val listazakupow = zakupy.values.flatten()
 
         for (item in listazakupow) {
             val checkbox = Chip(this).apply {
                 text = item
                 isCheckable = true
-                tag = shoppingItems.entries.firstOrNull { it.value.contains(item) }?.key
+                tag = zakupy.entries.firstOrNull { it.value.contains(item) }?.key
                 setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
                         selectedItems.add(item)
@@ -56,4 +65,53 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    @SuppressLint("UseCompatLoadingForColorStateLists")
+    private fun showAddMode() {
+        val checkboxesLayout = findViewById<View>(R.id.checkboxesLayout)
+        val chipsLayout = findViewById<View>(R.id.chipsLayout)
+        checkboxesLayout.visibility = View.VISIBLE
+        chipsLayout.visibility = View.GONE
+    }
+
+    @SuppressLint("UseCompatLoadingForColorStateLists")
+    private fun showCheckOffMode() {
+        val checkboxesLayout = findViewById<View>(R.id.checkboxesLayout)
+        val chipsLayout = findViewById<View>(R.id.chipsLayout)
+        checkboxesLayout.visibility = View.GONE
+        chipsLayout.visibility = View.VISIBLE
+
+        val chipsGroup = findViewById<ChipGroup>(R.id.chipsGroup)
+        chipsGroup.removeAllViews()
+
+        for ((groupName, items) in zakupy) {
+            for (item in items) {
+                if (selectedItems.contains(item)) {
+                    val chip = Chip(this)
+                    chip.text = item
+                    chip.isCloseIconVisible = true
+                    chip.tag = groupName
+
+                    val kolorki = resources.getColorStateList(R.color.purple_200)
+
+                    when (groupName) {
+                        "Ciastka", "Kwiaty", "Herbaty" -> {
+                            chip.chipBackgroundColor = kolorki
+                        }
+                    }
+
+                    chipsGroup.addView(chip)
+
+                    chip.setOnCloseIconClickListener {
+                        selectedItems.remove(chip.text.toString())
+                        chipsGroup.removeView(chip)
+
+                    }
+
+                }
+            }
+        }
+    }
 }
+
